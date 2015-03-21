@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>AngularUI - Slider demo</title>
-	<!--<base href=".."></base>-->
+	<base href=".."></base>
 	<link rel="stylesheet" type="text/css" href="bower_components/ng-slider/dist/css/ng-slider.min.css">
 	<link rel="stylesheet" href="demo/css/app.css">
 </head>
@@ -12,12 +12,12 @@
 
 	<h1>Angular Slider demo</h1>
 
-	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<input ng-model="value" type="text" id="mySlider1" slider options="options" />
+
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
 	<script src="components/app.js"></script>
 	<script type="text/javascript" src="bower_components/ng-slider/dist/ng-slider.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
 
 </body>
 </html>
