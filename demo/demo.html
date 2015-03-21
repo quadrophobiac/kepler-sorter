@@ -4,35 +4,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>AngularUI - Slider demo</title>
-	<base href=".."></base>
-	<link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="demo/css/slider.css">
+	<!--<base href=".."></base>-->
+	<link rel="stylesheet" type="text/css" href="bower_components/ng-slider/dist/css/ng-slider.min.css">
 	<link rel="stylesheet" href="demo/css/app.css">
 </head>
 <body ng-controller="sliderDemoCtrl">
 
-	<h1>AngularUI Slider demo</h1>
-	<ol>
-	<li>
-	<div class="sliderExample"><a name="ex1"></a>
-		<strong>Step slider with event listeners (see console log)</strong>
-		<div ui-slider="slider.options" min="0" max="9" ng-model="demoVals.sliderExample1"></div>
-		<input type="text" ng-model="demoVals.sliderExample1" />	
-	</div>
-	</li>
-	<!--<li>-->
-	<!--&lt;!&ndash;<div class="sliderExample"><a name="ex11"></a>&ndash;&gt;-->
-		<!--&lt;!&ndash;<strong>Simple <a href="http://jqueryui.com/slider/#colorpicker">Colorpicker</a></strong>&ndash;&gt;-->
-		<!--&lt;!&ndash;<div id="red" ui-slider="colorpicker.options" ng-model="colorpicker.red"></div>&ndash;&gt;-->
-		<!--&lt;!&ndash;Red: <input ng-model="colorpicker.red">&ndash;&gt;-->
-		<!--&lt;!&ndash;<div id="green" ui-slider="colorpicker.options" ng-model="colorpicker.green"></div>&ndash;&gt;-->
-		<!--&lt;!&ndash;Green: <input ng-model="colorpicker.green">&ndash;&gt;-->
-		<!--&lt;!&ndash;<div id="blue" ui-slider="colorpicker.options" ng-model="colorpicker.blue"></div>&ndash;&gt;-->
-		<!--&lt;!&ndash;Blue: <input ng-model="colorpicker.blue">&ndash;&gt;-->
-		<!--&lt;!&ndash;<div id="swatch"></div>&ndash;&gt;-->
-	<!--&lt;!&ndash;</div>&ndash;&gt;-->
-	<!--</li>-->
-	</ol>
+	<h1>Angular Slider demo</h1>
+
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
@@ -41,21 +20,6 @@
 	<script src="components/controllers/slideCtrl.js"></script>
 	<script src="components/services/colorPicker.js"></script>
 	<script type="text/javascript" src="src/slider.js"></script>	
-	<script>
 
-
-		
-		/*
-		// To set an option for all sliders
-		app.factory('uiSliderConfig', function ($log) {
-			return {
-		    	start: function (event, ui) { $log.info('Event: Slider start - set with uiSliderConfig', event); },
-		    	stop: function (event, ui) { $log.info('Event: Slider stop - set with uiSliderCOnfig', event); },
-			};
-		});
-		*/
-		
-
-	</script>
 </body>
 </html>
