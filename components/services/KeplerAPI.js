@@ -3,4 +3,4 @@
  */
 'use strict';
 
-app.factory('KeplerAPI', function(){});
+app.factory('KeplerAPI', function($q){});
