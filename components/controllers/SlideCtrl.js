@@ -7,11 +7,18 @@
 //http://darul75.github.io/ng-slider/
 
 
-app.controller('SlideCtrl', function($scope, $http){
+app.controller('SlideCtrl', function($scope, $http, KeplerAPI){
 
     $scope.planets = [
         // indexed from mercury to pluto
         58.81337, 243.68663, 1, 1.028552, 0.41435, 0.44499, 0.72006, 0.67339, 6.40529];
+
+    $scope.correlate = function(){
+        KeplerAPI.get(function(data) {
+            $scope.planets = data;
+        });
+    };
+
     $scope.matches = function(){
 
         $http({
@@ -47,7 +54,8 @@ app.controller('SlideCtrl', function($scope, $http){
             // released it triggered when mouse up
             console.log(value + " " + released);
             console.log($scope.planets[(value-1)]);
-            $scope.matches();
+            //$scope.matches();
+            $scope.correlate();
         }
     };
 });
