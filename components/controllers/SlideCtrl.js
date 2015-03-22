@@ -7,12 +7,12 @@
 //http://darul75.github.io/ng-slider/
 
 
-app.controller('SlideCtrl', function($scope){
+app.controller('SlideCtrl', function($scope, KeplerAPI){
 
     $scope.planets = [
         // indexed from mercury to pluto
         58.81337, 243.68663, 1, 1.028552, 0.41435, 0.44499, 0.72006, 0.67339, 6.40529];
-
+    $scope.matches = KeplerAPI.get();
 
     $scope.value = "1";
     $scope.options = {
@@ -28,6 +28,7 @@ app.controller('SlideCtrl', function($scope){
             // released it triggered when mouse up
             console.log(value + " " + released);
             console.log($scope.planets[(value-1)]);
+            console.log($scope.matches);
         }
     };
 });
