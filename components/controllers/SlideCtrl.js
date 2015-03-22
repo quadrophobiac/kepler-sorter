@@ -20,17 +20,22 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI, GetRequest){
         });
     };
 
+    $scope.consume = function(){
+        $http.get
+    }
+
     $scope.matches = function(){
 
         $http({
             method: 'GET',
             url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10',
             headers: {
-                'Access-Control-Allow-Origin': 'http://localhost',
+                'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
             }
-        })
+        })// above format always sent as OPTIONS instead of GET
+        //$http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10')
             .success(function(data, status){
                 $scope.status = status;
                 $scope.data = data;
@@ -44,7 +49,15 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI, GetRequest){
     };
 
     $scope.fetch = function(){
-        GetRequest.getProject();
+        console.log("calling fetch");
+        $http.jsonp('http://www.asterank.com/api/kepler?query={%22PER%22:{%22$lt%22:1.02595675,%22$gt%22:0.67125}}&limit=10&callback=JSON_CALLBACK')
+            .success(function (data) {
+            console.log("success");
+            }).error(function(data, status, headers, config) {
+            $scope.error = true;
+                console.log("fail");
+                console.log(status);
+        });
     }
 
     $scope.value = "1";
@@ -61,9 +74,9 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI, GetRequest){
             // released it triggered when mouse up
             console.log(value + " " + released);
             console.log($scope.planets[(value-1)]);
-            //$scope.matches(); // CORS failure
-            //$scope.correlate(); // CORS failure
-            $scope.fetch();
+            //$scope.matches(); // CORS failure sends an OPTION request
+            $scope.correlate(); // CORS failure sends a GET request, but doesn't have the headers to get around the domain shit
+            //$scope.fetch(); // sends a GET request, the JSON is returned in browser, but the function returns a 404
         }
     };
 });
