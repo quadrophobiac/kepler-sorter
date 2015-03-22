@@ -8,9 +8,12 @@ app.controller('Request', function($scope, $http){
     $scope.test = "functional";
     $scope.get = function(){
 
-        $http.get('http://www.w3schools.com/website/Customers_JSON.php').
-            success(function(data) {
-                $scope.greeting = data;
+        $http.get('http://www.w3schools.com/website/Customers_JSON.php')
+            .success(function(result) {
+                console.log("Success", result);
+                $scope.result = result;
+            }).error(function() {
+                console.log("error");
             });
 
     };
