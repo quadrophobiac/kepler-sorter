@@ -33,12 +33,21 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI){
             .success(function(data, status){
                 $scope.status = status;
                 $scope.data = data;
+                console.log(data);
             })
             .error(function(data, status){
                 $scope.data = data || "Request failed";
                 $scope.status = status;
+                console.log(status);
             });
     };
+
+    $scope.fetch = function(){
+        console.log("in the JSONP fetch");
+        $http.jsonp('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10'+"&callback=JSON_CALLBACK")
+            .success(function(data) { console.log(data);
+            });
+    }
 
     $scope.value = "1";
     $scope.options = {
@@ -54,8 +63,9 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI){
             // released it triggered when mouse up
             console.log(value + " " + released);
             console.log($scope.planets[(value-1)]);
-            //$scope.matches();
-            $scope.correlate();
+            $scope.matches(); // CORS failure
+            $scope.correlate(); // CORS failure
+            //$scope.fetch();
         }
     };
 });
