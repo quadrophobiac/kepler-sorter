@@ -7,7 +7,7 @@
 //http://darul75.github.io/ng-slider/
 
 
-app.controller('SlideCtrl', function($scope, $http, KeplerAPI){
+app.controller('SlideCtrl', function($scope, $http, KeplerAPI, GetRequest){
 
     $scope.planets = [
         // indexed from mercury to pluto
@@ -44,10 +44,7 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI){
     };
 
     $scope.fetch = function(){
-        console.log("in the JSONP fetch");
-        $http.jsonp('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10'+"&callback=JSON_CALLBACK")
-            .success(function(data) { console.log(data);
-            });
+        GetRequest.getProject();
     }
 
     $scope.value = "1";
@@ -65,8 +62,8 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI){
             console.log(value + " " + released);
             console.log($scope.planets[(value-1)]);
             //$scope.matches(); // CORS failure
-            $scope.correlate(); // CORS failure
-            //$scope.fetch();
+            //$scope.correlate(); // CORS failure
+            $scope.fetch();
         }
     };
 });
