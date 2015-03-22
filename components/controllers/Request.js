@@ -6,9 +6,14 @@
 app.controller('Request', function($scope, $http){
     // functional URL = http://www.w3schools.com/website/Customers_JSON.php
     $scope.test = "functional";
-    $http.get('http://www.w3schools.com/website/Customers_JSON.php').
-        success(function(data) {
-            $scope.greeting = data;
-        });
+    $scope.get = function(){
+
+        $http.get('http://www.w3schools.com/website/Customers_JSON.php').
+            success(function(data) {
+                $scope.greeting = data;
+            });
+
+    };
+
 
 });
