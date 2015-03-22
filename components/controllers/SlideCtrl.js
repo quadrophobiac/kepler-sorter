@@ -7,12 +7,26 @@
 //http://darul75.github.io/ng-slider/
 
 
-app.controller('SlideCtrl', function($scope, KeplerAPI){
+app.controller('SlideCtrl', function($scope, $http){
 
     $scope.planets = [
         // indexed from mercury to pluto
         58.81337, 243.68663, 1, 1.028552, 0.41435, 0.44499, 0.72006, 0.67339, 6.40529];
-    $scope.matches = KeplerAPI.get();
+    $scope.matches = function(){
+
+        $http({
+            method: 'GET',
+            url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10'
+        })
+            .success(function(data, status){
+                $scope.status = status;
+                $scope.data = data;
+            })
+            .error(function(data, status){
+                $scope.data = data || "Request failed";
+                $scope.status = status;
+            });
+    };
 
     $scope.value = "1";
     $scope.options = {
@@ -28,7 +42,7 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
             // released it triggered when mouse up
             console.log(value + " " + released);
             console.log($scope.planets[(value-1)]);
-            console.log($scope.matches);
+            $scope.matches();
         }
     };
 });
