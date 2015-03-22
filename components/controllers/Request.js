@@ -8,14 +8,14 @@ app.controller('Request', function($scope, $http){
     $scope.test = "functional";
     $scope.get = function(){
 
-        $http.get('http://www.w3schools.com/website/Customers_JSON.php')
+        $http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10')
             .success(function(result) {
                 console.log("Success", result);
                 $scope.result = result;
             }).error(function() {
                 console.log("error");
             });
-
+        // the above is sending a GET request rather than an OPTIONS request
     };
 
 
