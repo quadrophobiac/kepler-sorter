@@ -7,6 +7,7 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1"
+    "start": "http-server --cors -a localhost -p 8000 -c-1"
+    // https://github.com/indexzero/http-server
   }
 }
