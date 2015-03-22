@@ -16,7 +16,12 @@ app.controller('SlideCtrl', function($scope, $http){
 
         $http({
             method: 'GET',
-            url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10'
+            url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
+            }
         })
             .success(function(data, status){
                 $scope.status = status;
