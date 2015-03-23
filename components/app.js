@@ -13,7 +13,6 @@ var app = angular.module('sliderDemoApp', ['ngSlider', 'ngResource']);
     //        }
     //    });
     //});
-//var app = angular.module('sliderDemoApp', ['ngSlider', 'ngRoute'])
 //    .config(function ($routeProvider) {
 //    $routeProvider
 //        .when('/', {
