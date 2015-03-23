@@ -7,6 +7,11 @@ var app = angular.module('sliderDemoApp', ['ngSlider', 'ngResource']);
     //    //Enable cross domain calls
     //    $httpProvider.defaults.useXDomain = true;
     //    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //    $http({
+    //        headers: {
+    //            'Access-Control-Allow-Origin': '*'
+    //        }
+    //    });
     //});
 //var app = angular.module('sliderDemoApp', ['ngSlider', 'ngRoute'])
 //    .config(function ($routeProvider) {
