@@ -3,7 +3,7 @@
  */
 'use strict';
 
-app.controller('Request', function($scope, $http, JSONP){
+app.controller('Request', function($scope, $http){
     // functional URL = http://www.w3schools.com/website/Customers_JSON.php
     $scope.test = "functional";
     $scope.get = function(){
@@ -25,8 +25,4 @@ app.controller('Request', function($scope, $http, JSONP){
         // the above is sending a GET request rather than an OPTIONS request
     };
 
-    $scope.grabJSON = function(){
-        $scope.data = JSONP.getResponse();
-        console.log($scope.data);
-    };
 });
