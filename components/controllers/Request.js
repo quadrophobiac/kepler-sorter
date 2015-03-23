@@ -10,10 +10,6 @@ app.controller('Request', function($scope, $http){
 
         $http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10',{
             params: {
-                headers: {
-                    //'Access-Control-Allow-Origin': '*'
-                    'Access-Control-Request-Headers' : 'access-control-allow-origin'
-                }
             }
         })
             .success(function(result) {
