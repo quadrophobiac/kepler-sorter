@@ -6,24 +6,26 @@
 app.factory('LocalKepler', function($http){
 
 
-    var KOI = {
+    var LocalKepler = {
 
         data: [],
 
         get: function(){
+            console.log("inside factory");
             return $http.get('mars-neptune.json')
                 .success(function(result){
+                    console.log("success");
                     var theData = angular.fromJson(result);
                     angular.copy(theData, data);
-                    console.log("success");
+
                 })
                 .error(function(){
                     console.log("error");
                 });
-        },
+        }
 
-        KOI: {}
+        //KOI: {}
     };
 
-    return KOI;
+    return LocalKepler;
 });

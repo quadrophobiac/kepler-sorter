@@ -7,9 +7,9 @@ app.controller('Request', function($scope, $http, LocalKepler){
     // functional URL = http://www.w3schools.com/website/Customers_JSON.php
     $scope.test = "functional";
 
-    $scope.koi = LocalKepler.KOI.data;
+    $scope.koi = LocalKepler.data;
 
-    $scope.factoryFetch = LocalKepler.KOI.get;
+    $scope.factoryFetch = function(){ console.log("function triggered"); LocalKepler.get(); console.log("function conclided")};
 
 
     $scope.get = function(){
