@@ -19,8 +19,17 @@
 		<p>testing scope {{test}}</p>
 		<button ng-click="get()">GET</button>
 		Result : {{result}}
+	</div><br>
+	<div ng-controller="Request">
+		<p>testing scope {{test}}</p>
+		<button ng-click="localFetch()">LocalGet</button>
+		Result : {{result}}
+	</div><br>
 
-		<button ng-click="grabJSON()">JSON</button>
+	<div ng-controller="SlideCtrl">
+		<p>testing scope {{test}}</p>
+		<button ng-click="matches()">GetResource</button>
+		Result : {{data}}
 	</div>
 
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>

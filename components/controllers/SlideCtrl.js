@@ -15,24 +15,26 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI, GetRequest){
 
     $scope.correlate = function(){
         KeplerAPI.get(function(data) {
-            $scope.planets = data;
+            $scope.exoplanets = data;
             // this fails
         });
     };
-
-    $scope.consume = function(){
-        $http.get
-    }
 
     $scope.matches = function(){
 
         $http({
             method: 'GET',
-            url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10',
+            url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
+            },
+            //params: {
+            //    action: "get"
+            //}
+            params: {
+                limit: 10
             }
         })// above format always sent as OPTIONS instead of GET
         //$http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10')
@@ -60,22 +62,30 @@ app.controller('SlideCtrl', function($scope, $http, KeplerAPI, GetRequest){
         });
     }
 
-    $scope.value = "1";
+    $scope.value = "1;2";
     $scope.options = {
         from: 1,
         to: 9,
         step: 1,
+        threshold: 1,
+        scale: ["mercury","venus","earth", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"],
+        //dimension: 'planets',
+        smooth: true,
         css: {
             background: {"background-color": "silver"},
+            range: {"background-color": "blue"},
             pointer: {"background-color": "red"}   // circle pointer
         },
+        realtime: true,
         callback: function(value, released) {
             // useful when combined with 'realtime' option
             // released it triggered when mouse up
-            console.log(value + " " + released);
+            var startPlanet = value.substring(0,1);
+            var endPlanet = value.substring(2,3);
+            console.log( startPlanet+ " "+endPlanet+" "+ released);
             console.log($scope.planets[(value-1)]);
-            //$scope.matches(); // CORS failure sends an OPTION request
-            $scope.correlate(); // CORS failure sends a GET request, but doesn't have the headers to get around the domain shit
+            $scope.matches(); // sends an OPTION request when CORS absent
+            //$scope.correlate(); // CORS failure sends a GET request, but doesn't have the headers to get around the domain shit
             //$scope.fetch(); // sends a GET request, the JSON is returned in browser, but the function returns a 404
         }
     };

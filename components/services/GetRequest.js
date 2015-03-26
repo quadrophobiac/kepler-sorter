@@ -6,7 +6,7 @@
 app.factory("GetRequest", function($http) {
 
     return {
-        getProject: function(successcb) {
+        getProject: function(success) {
             var getData = {
                 method: 'POST',
                 url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10',
