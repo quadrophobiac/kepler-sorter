@@ -24,8 +24,6 @@ app.factory('LocalKepler', function($http){
                     console.log("error");
                 });
         }
-
-        //KOI: {}
     };
 
     return LocalKepler;
