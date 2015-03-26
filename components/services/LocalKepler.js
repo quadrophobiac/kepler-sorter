@@ -8,19 +8,21 @@ app.factory('LocalKepler', function($http){
 
     var KOI = {
 
-        get: function($http){
-            $http.get('mars-neptune.json')
-                .success(function(result){
-                    console.log("success");
-                    result = angular.fromJson(result);
+        data: [],
 
+        get: function($http){
+            return $http.get('mars-neptune.json')
+                .success(function(result){
+                    var theData = angular.fromJson(result);
+                    angular.copy(theData, data);
+                    console.log("success");
                 })
                 .error(function(){
                     console.log("error");
                 });
         },
 
-        KOI: {}
+        //KOI: {}
     };
 
     return KOI;

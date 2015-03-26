@@ -3,9 +3,12 @@
  */
 'use strict';
 
-app.controller('Request', function($scope, $http){
+app.controller('Request', function($scope, $http, LocalKepler){
     // functional URL = http://www.w3schools.com/website/Customers_JSON.php
     $scope.test = "functional";
+
+
+
     $scope.get = function(){
         // hopefully can create optional parameters for this that can be passed to get as args
 
