@@ -10,8 +10,12 @@ app.factory('LocalKepler', function($http){
 
         data: [],
 
+        captainsLog: function(arg1, arg2){
+          console.log(arg1+" , "+arg2+"!!!");
+        },
+
         get: function(){
-            console.log("inside factory");
+            // this function can receive parameters for use in construction of query for AsteRank API
             return $http.get('mars-neptune.json')
                 .success(function(result){
                     console.log("success");
