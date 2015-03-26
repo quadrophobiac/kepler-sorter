@@ -15,9 +15,10 @@ app.factory('LocalKepler', function($http){
             return $http.get('mars-neptune.json')
                 .success(function(result){
                     console.log("success");
+                    console.log(result);
                     var theData = angular.fromJson(result);
-                    angular.copy(theData, data);
-
+                    angular.copy(theData, LocalKepler.data);
+                    // it seems like there should be a better way, like self.data for the above invocation
                 })
                 .error(function(){
                     console.log("error");
