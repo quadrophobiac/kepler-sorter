@@ -15,8 +15,10 @@ app.controller('Request', function($scope, $http, LocalKepler){
     $scope.get = function(){
         // hopefully can create optional parameters for this that can be passed to get as args
 
-        $http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10',{
+        $http.get('http://www.asterank.com/api/kepler',{
             params: {
+                query: '{"PER":{"$lt":1.02595675,"$gt":0.67125}}',
+                limit: 10
             }
         })
             .success(function(result) {

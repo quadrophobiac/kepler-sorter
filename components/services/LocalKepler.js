@@ -16,7 +16,7 @@ app.factory('LocalKepler', function($http){
 
         get: function(){
             // this function can receive parameters for use in construction of query for AsteRank API
-            return $http.get('mars-neptune.json')
+            return $http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10')
                 .success(function(result){
                     console.log("success");
                     console.log(result);
