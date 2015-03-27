@@ -9,7 +9,7 @@ app.controller('Request', function($scope, $http, LocalKepler){
 
     $scope.koi = LocalKepler.data;
 
-    $scope.factoryFetch = function(){ LocalKepler.captainsLog("hello", "how are you"); LocalKepler.get(); };
+    $scope.factoryFetch = function(){ LocalKepler.captainsLog("hello", "how are you"); LocalKepler.get(1.02595675, 0.67125); };
 
 
     $scope.get = function(){

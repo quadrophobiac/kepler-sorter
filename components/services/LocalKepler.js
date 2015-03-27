@@ -20,7 +20,7 @@ app.factory('LocalKepler', function($http){
             // this function can receive parameters for use in construction of query for AsteRank API
             return $http.get('http://www.asterank.com/api/kepler',{
                 params: {
-                    query: '{"PER":{"$lt":'+1.02595675+',"$gt":'+0.67125+'}}',
+                    query: '{"PER":{"$lt":'+lt+',"$gt":'+gt+'}}',
                     limit: 10
                 }
             })
