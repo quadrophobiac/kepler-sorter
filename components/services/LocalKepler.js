@@ -10,13 +10,20 @@ app.factory('LocalKepler', function($http){
 
         data: [],
 
+
+
         captainsLog: function(arg1, arg2){
           console.log(arg1+" , "+arg2+"!!!");
         },
 
-        get: function(){
+        get: function(lt, gt){
             // this function can receive parameters for use in construction of query for AsteRank API
-            return $http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10')
+            return $http.get('http://www.asterank.com/api/kepler',{
+                params: {
+                    query: '{"PER":{"$lt":'+1.02595675+',"$gt":'+0.67125+'}}',
+                    limit: 10
+                }
+            })
                 .success(function(result){
                     console.log("success");
                     console.log(result);
