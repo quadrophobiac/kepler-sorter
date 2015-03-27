@@ -7,60 +7,18 @@
 //http://darul75.github.io/ng-slider/
 
 
-app.controller('SlideCtrl', function($scope, $http, KeplerAPI, GetRequest){
+app.controller('SlideCtrl', function($scope, KeplerAPI){
 
     $scope.planets = [
         // indexed from mercury to pluto
         58.81337, 243.68663, 1, 1.028552, 0.41435, 0.44499, 0.72006, 0.67339, 6.40529];
 
-    $scope.correlate = function(){
-        KeplerAPI.get(function(data) {
-            $scope.exoplanets = data;
-            // this fails
-        });
-    };
+    $scope.koi = KeplerAPI.data;
 
     $scope.matches = function(){
 
-        $http({
-            method: 'GET',
-            url: 'http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
-            },
-            //params: {
-            //    action: "get"
-            //}
-            params: {
-                limit: 10
-            }
-        })// above format always sent as OPTIONS instead of GET
-        //$http.get('http://www.asterank.com/api/kepler?query={"PER":{"$lt":1.02595675,"$gt":0.67125}}&limit=10')
-            .success(function(data, status){
-                $scope.status = status;
-                $scope.data = data;
-                console.log(data);
-            })
-            .error(function(data, status){
-                $scope.data = data || "Request failed";
-                $scope.status = status;
-                console.log(status);
-            });
+        KeplerAPI.get(1.02595675, 0.67125);
     };
-
-    $scope.fetch = function(){
-        console.log("calling fetch");
-        $http.jsonp('http://www.asterank.com/api/kepler?query={%22PER%22:{%22$lt%22:1.02595675,%22$gt%22:0.67125}}&limit=10&callback=JSON_CALLBACK')
-            .success(function (data) {
-            console.log("success");
-            }).error(function(data, status, headers, config) {
-            $scope.error = true;
-                console.log("fail");
-                console.log(status);
-        });
-    }
 
     $scope.value = "1;2";
     $scope.options = {
