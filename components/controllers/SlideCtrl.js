@@ -15,10 +15,15 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
 
     $scope.koi = KeplerAPI.data;
 
-    $scope.matches = function(){
-
-        KeplerAPI.get(1.02595675, 0.67125);
+    $scope.matches = function(lt, gt){
+        KeplerAPI.captainsLog(lt, gt);
+        KeplerAPI.get(lt, gt);
+        // get expects args in order lt, gt
     };
+
+    $scope.proxy = function(){
+        KeplerAPI.proxyGet();
+    }
 
     $scope.value = "1;2";
     $scope.options = {
@@ -35,18 +40,29 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
             pointer: {"background-color": "red"}   // circle pointer
         },
         realtime: true,
-        callback: function(value, released) {
+        callback: function(value) {
             // useful when combined with 'realtime' option
             // released it triggered when mouse up
             var startPlanet = value.substring(0,1);
             var endPlanet = value.substring(2,3);
-            console.log( startPlanet+ " "+endPlanet+" "+ released);
-            console.log($scope.planets[(value-1)]);
-            $scope.matches(); // sends an OPTION request when CORS absent
-            //$scope.correlate(); // CORS failure sends a GET request, but doesn't have the headers to get around the domain shit
-            //$scope.fetch(); // sends a GET request, the JSON is returned in browser, but the function returns a 404
+            console.log( startPlanet+ " "+endPlanet+" ");
+            $scope.comparison($scope.planets[(startPlanet-1)], $scope.planets[(endPlanet-1)]);
+            console.log("fetch KOIs less than "+$scope.ceiling+" and greater than "+$scope.floor);
+            $scope.matches($scope.ceiling, $scope.floor);
+
         }
     };
+
+    $scope.comparison = function(astral1, astral2){
+        if (Math.round(parseFloat(astral1)*100)/100 > Math.round(parseFloat(astral2)*100)/100){
+            $scope.ceiling = astral1;
+            $scope.floor = astral2;
+        } else {
+            $scope.ceiling = astral2;
+            $scope.floor = astral1;
+        }
+    };
+
 });
 
 /* second not carried over until final column |
