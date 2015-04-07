@@ -11,7 +11,7 @@ var express = require("express"),
     url = require('url');
     hostname = process.env.HOSTNAME || 'localhost',
     port = parseInt(process.env.PORT, 10) || 4567,
-    publicDir = process.argv[2] || __dirname + '/public';
+    publicDir = process.argv[2] || __dirname;
 
 // Enables CORS
 var enableCORS = function(req, res, next) {
@@ -66,7 +66,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.static(publicDir));
-//app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public'))); - a diff way of writing the previous
 app.use(errorHandler({
     dumpExceptions: true,
     showStack: true
