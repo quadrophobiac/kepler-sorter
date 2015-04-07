@@ -5,7 +5,7 @@ var http = require('http');
 var url = require('url');
 var request = require('request');
 
-http.createServer(onRequest).listen(3000);
+http.createServer(onRequest).listen(8080);
 
 function onRequest(req, res) {
     //console.log(req);
@@ -22,7 +22,7 @@ function onRequest(req, res) {
         url: queryData.url,
         headers: {
             //'Access-Control-Allow-Origin': 'localhost'
-            'Access-Control-Allow-Origin': 'localhost'
+            'Access-Control-Allow-Origin': 'secret-reaches-4650.herokuapp.com'
         }
     };
 

@@ -15,7 +15,7 @@ app.factory('KeplerAPI', function($http){
         },
 
         proxyGet: function(){
-            return $http.get('http://localhost:3000/?url=http://www.asterank.com/api/kepler?query={%22TPLANET%22:{%22$lt%22:320,%22$gt%22:290}}%26limit=10')
+            return $http.get('http://secret-reaches-4650.herokuapp.com:3000/?url=http://www.asterank.com/api/kepler?query={%22TPLANET%22:{%22$lt%22:320,%22$gt%22:290}}%26limit=10')
                 .success(function(result){
                     var theData = angular.fromJson(result);
                     angular.copy(theData, KeplerAPI.data);
