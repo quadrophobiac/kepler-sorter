@@ -15,7 +15,7 @@ app.factory('KeplerAPI', function($http){
         },
 
         proxyGet: function(){
-            return $http.get('http://secret-reaches-4650.herokuapp.com:3000/?url=http://www.asterank.com/api/kepler?query={%22TPLANET%22:{%22$lt%22:320,%22$gt%22:290}}%26limit=10')
+            return $http.get('http://localhost:4567/api?query={%22TPLANET%22:{%22$lt%22:320,%22$gt%22:290}}%26limit=10')
                 .success(function(result){
                     var theData = angular.fromJson(result);
                     angular.copy(theData, KeplerAPI.data);
@@ -28,7 +28,7 @@ app.factory('KeplerAPI', function($http){
         get: function(lt, gt){
 
             // this function can receive parameters for use in construction of query for AsteRank API
-            return $http.get('http://www.asterank.com/api/kepler',{
+            return $http.get('http://localhost:4567/api',{
                 params: {
                     query: '{"PER":{"$lt":'+lt+',"$gt":'+gt+'}}',
                     limit: 10

@@ -12,6 +12,8 @@ var express = require("express"),
     hostname = process.env.HOSTNAME || 'localhost',
     port = parseInt(process.env.PORT, 10) || 4567,
     publicDir = process.argv[2] || __dirname;
+    // publicDir = process.argv[2] || __dirname + '/public'; // this would be conventional way to declare the public
+    // directory, however this folder installed bower components and modules at root
 
 // Enables CORS
 var enableCORS = function(req, res, next) {
