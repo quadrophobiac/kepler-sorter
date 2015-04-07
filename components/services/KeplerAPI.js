@@ -28,7 +28,7 @@ app.factory('KeplerAPI', function($http){
         get: function(lt, gt){
 
             // this function can receive parameters for use in construction of query for AsteRank API
-            return $http.get('http://localhost:4567/api',{
+            return $http.get('/api',{
                 params: {
                     query: '{"PER":{"$lt":'+lt+',"$gt":'+gt+'}}',
                     limit: 10
