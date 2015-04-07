@@ -2,14 +2,15 @@
  * Created by stephen on 02/04/15.
  */
 var express = require("express"),
+    path = require('path'),
     app = express(),
     bodyParser = require('body-parser'),
     errorHandler = require('errorhandler'),
     methodOverride = require('method-override'),
     request = require('request'),
     url = require('url');
-hostname = process.env.HOSTNAME,
-    port = parseInt(process.env.PORT, 10),
+    hostname = process.env.HOSTNAME || 'localhost',
+    port = parseInt(process.env.PORT, 10) || 4567,
     publicDir = process.argv[2] || __dirname + '/public';
 
 // Enables CORS
@@ -26,6 +27,14 @@ var enableCORS = function(req, res, next) {
         next();
     }
 };
+
+app.engine('html', require('ejs').renderFile);
+
+app.set('view engine', 'ejs');
+
+app.get("/index.html", function(req, res){
+    res.render(path.join(__dirname, 'index.html'));
+});
 
 
 app.get("/", function (req, res) {
@@ -57,6 +66,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.static(publicDir));
+//app.use(express.static(path.join(__dirname, 'public')));
 app.use(errorHandler({
     dumpExceptions: true,
     showStack: true

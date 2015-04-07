@@ -9,7 +9,8 @@
     "express": "*",
     "body-parser": "*",
     "method-override": "*",
-    "errorhandler": "*"
+    "errorhandler": "*",
+    "ejs": "*"
   },
 
   "scripts": {
