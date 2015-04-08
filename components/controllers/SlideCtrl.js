@@ -14,6 +14,7 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
         58.81337, 243.68663, 1, 1.028552, 0.41435, 0.44499, 0.72006, 0.67339, 6.40529];
 
     $scope.koi = KeplerAPI.data;
+    $scope.radiusList = KeplerAPI.radiiData;
 
     $scope.matches = function(lt, gt){
         KeplerAPI.captainsLog(lt, gt);
@@ -21,8 +22,8 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
         // get expects args in order lt, gt
     };
 
-    $scope.proxy = function(){
-        KeplerAPI.proxyGet();
+    $scope.radius = function(){
+        KeplerAPI.radii(32, 1);
     }
 
     $scope.value = "1;2";

@@ -12,26 +12,21 @@
 
 	<h1>Kepler Comparison</h1>
 
-	<div ng-controller="SlideCtrl">
-		<p>testing scope {{test}}</p>
-		<button ng-click="matches()">GetResource</button>
-		Result : <br>
-		<div ng-repeat="object in koi">
+	<div>
+		<div ng-repeat="object in koi" style="font:13px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #73161b;">
 			{{"Kepler ID "+object.KOI+" : Rotation Period "+object.PER}}
 		</div>
-
-
-		<button ng-click="proxy()">Proxy Fetch</button>
-		Result : <br>
-		<div ng-repeat="object in koi">
-			{{"Kepler ID "+object.KOI+" : Rotation Period "+object.PER}}
-		</div>
-
 	</div>
 	<br>
-
-	<input ng-model="value" type="text" id="mySlider1" slider options="options" />
-	<!--above is the slider, which has some non functional API calls bound to it-->
+	<div>
+		<input ng-model="value" type="text" id="mySlider1" slider options="options" /><br>
+		<!--above is the slider, which has some non functional API calls bound to it-->
+		<button ng-click="radius()">Get Radii</button>
+		Result : <br>
+		<div ng-repeat="obj in radiusList | filter:obj.RPLANET">
+			{{"Kepler ID "+obj.KOI+" : Rotation PERIOd "+obj.PER+" radius: "+obj.RPLANET}}
+		</div>
+	</div>
 
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 	<script src="components/app.js"></script>

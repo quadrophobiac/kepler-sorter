@@ -15,6 +15,7 @@
 
   "scripts": {
     "postinstall": "bower install",
-    "prestart": "npm install"
+    "prestart": "npm install",
+    "start": "node server"
   }
 }

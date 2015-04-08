@@ -9,6 +9,7 @@ app.factory('KeplerAPI', function($http){
 
         data: [],
 
+        radiiData: [],
 
         captainsLog: function(arg1, arg2){
             console.log(arg1+" , "+arg2+"!!!");
@@ -23,6 +24,27 @@ app.factory('KeplerAPI', function($http){
                 .error(function(){
                     console.log("proxy fail");
                 });
+        },
+
+        radii: function(lt, gt){
+
+            return $http.get('/api',{
+                params: {
+                    query: '{"RPLANET":{"$lt":'+lt+',"$gt":'+gt+'}}',
+                    limit: 100
+                }
+            })
+                .success(function(result){
+                    console.log("success");
+                    console.log(result);
+                    var theData = angular.fromJson(result);
+                    angular.copy(theData, KeplerAPI.radiiData);
+                    // it seems like there should be a better way, like self.data for the above invocation
+                })
+                .error(function(){
+                    console.log("error");
+                });
+
         },
 
         get: function(lt, gt){
