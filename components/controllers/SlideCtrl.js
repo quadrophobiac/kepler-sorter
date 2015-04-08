@@ -22,7 +22,8 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
         // get expects args in order lt, gt
     };
 
-    $scope.radius = function(){
+    $scope.radius = function(gt, lt){
+        console.log(gt+" and "+lt);
         KeplerAPI.radii(32, 1);
     }
 

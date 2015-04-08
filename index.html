@@ -21,11 +21,24 @@
 	<div>
 		<input ng-model="value" type="text" id="mySlider1" slider options="options" /><br>
 		<!--above is the slider, which has some non functional API calls bound to it-->
-		<button ng-click="radius()">Get Radii</button>
-		Result : <br>
-		<div ng-repeat="obj in radiusList | filter:obj.RPLANET">
-			{{"Kepler ID "+obj.KOI+" : Rotation PERIOd "+obj.PER+" radius: "+obj.RPLANET}}
-		</div>
+		<form>
+			Greater than: <input type="number" min="0" ng-model="greaterThan">
+			Less than: <input type="number" min="0" ng-model="lessThan">
+			Return number of KOI: <input type="number" min="10" max="200" ng-model="limit">
+		</form>
+
+		<button ng-click="radius(greaterThan, lessThan)">Get Radii</button><br>
+		Result : {{numberRadii}} exoplanets found <br>
+		<table>
+			<tr ng-repeat="obj in radiusList" style="font:13px 'Comic Sans MS', cursive, sans-serif">
+				{{
+				"Index: "+$index+
+				" Kepler ID "+obj.KOI+
+				" : Stellar Mass "+obj.MSTAR+
+				" radius: "+obj.RPLANET
+				}}
+			</tr>
+		</table>
 	</div>
 
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
