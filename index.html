@@ -12,33 +12,42 @@
 
 	<h1>Kepler Comparison</h1>
 
-	<div>
-		<div ng-repeat="object in koi" style="font:13px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #73161b;">
-			{{"Kepler ID "+object.KOI+" : Rotation Period "+object.PER}}
-		</div>
+	<div id="displayBox" style="">
+		<table>
+			<tr ng-repeat="object in koi" style="font:13px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #73161b;">
+				<!--<td>Index:  {{$index+1}}</td>-->
+				<td>Kepler ID: {{object.KOI}}</td>
+				<td>Rotation Period: {{object.PER}}</td>
+			</tr>
+		</table>
 	</div>
 	<br>
 	<div>
-		<input ng-model="value" type="text" id="mySlider1" slider options="options" /><br>
+		<input ng-model="value" type="text" id="mySlider1" slider options="options" /><br><br>
 		<!--above is the slider, which has some non functional API calls bound to it-->
 		<form>
-			Greater than: <input type="number" min="0" ng-model="greaterThan">
-			Less than: <input type="number" min="0" ng-model="lessThan">
-			Return number of KOI: <input type="number" min="10" max="200" ng-model="limit">
+			Return number of KOI: <input type="number" min="10" max="200" step="10" placeholder="10" value="10" ng-model="theLimit">
 		</form>
 
-		<button ng-click="radius(greaterThan, lessThan)">Get Radii</button><br>
-		Result : {{numberRadii}} exoplanets found <br>
-		<table>
-			<tr ng-repeat="obj in radiusList" style="font:13px 'Comic Sans MS', cursive, sans-serif">
-				{{
-				"Index: "+$index+
-				" Kepler ID "+obj.KOI+
-				" : Stellar Mass "+obj.MSTAR+
-				" radius: "+obj.RPLANET
-				}}
-			</tr>
-		</table>
+
+		<!--<form>-->
+			<!--Greater than: <input type="number" min="0" ng-model="greaterThan">-->
+			<!--Less than: <input type="number" min="0" ng-model="lessThan">-->
+			<!--Return number of KOI: <input type="number" min="10" max="200" ng-model="theLimit">-->
+		<!--</form><br><br>-->
+
+		<!--<button ng-click="radius(greaterThan, lessThan, theLimit)">Get Radii</button><br>-->
+		<!--Result : {{numberRadii}} exoplanets found <br>-->
+		<!--<table>-->
+			<!--<tr ng-repeat="obj in radiusList" style="font:13px 'Comic Sans MS', cursive, sans-serif">-->
+
+				<!--<td>"Index: " {{$index+1}}</td>-->
+				<!--<td>" Kepler ID " {{obj.KOI}}</td>-->
+				<!--<td>Stellar Mass " {{obj.MSTAR}}</td>-->
+				<!--<td>radius: " {{obj.RPLANET}}</td>-->
+
+			<!--</tr>-->
+		<!--</table>-->
 	</div>
 
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>

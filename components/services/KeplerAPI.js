@@ -26,15 +26,15 @@ app.factory('KeplerAPI', function($http){
                 });
         },
 
-        radii: function(lt, gt){
-
+        radii: function(lt, gt, limit){
+            console.log(lt+" and "+gt+" and and "+limit);
             //One Earth mass =  0.000 003 003
 
             return $http.get('/api',{
                 params: {
                     //query: '{"RPLANET":{"$lt":'+lt+',"$gt":'+gt+'}}',
                     query: '{"RPLANET":{"$lt":'+lt+',"$gt":'+gt+'}}',
-                    limit: 100
+                    limit: limit
                 }
             })
                 .success(function(result){
