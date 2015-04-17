@@ -11,8 +11,8 @@ app.factory('KeplerAPI', function($http){
 
         radiiData: [],
 
-        captainsLog: function(arg1, arg2){
-            console.log(arg1+" , "+arg2+"!!!");
+        captainsLog: function(arg1, arg2, arg3){
+            console.log(arg1+" , "+arg2+" , "+arg3+"!!!");
         },
 
         proxyGet: function(){
@@ -50,20 +50,26 @@ app.factory('KeplerAPI', function($http){
 
         },
 
-        get: function(lt, gt){
+        get: function(lt, gt, limit){
+
+            if(angular.isUndefined(limit)){
+                console.log("no limit param passed")
+                limit = 100;
+            }
 
             // this function can receive parameters for use in construction of query for AsteRank API
             return $http.get('/api',{
                 params: {
                     query: '{"PER":{"$lt":'+lt+',"$gt":'+gt+'}}',
-                    limit: 10
+                    limit: limit
                 }
             })
                 .success(function(result){
-                    console.log("success");
+                    console.log("success in factory");
                     console.log(result);
-                    var theData = angular.fromJson(result);
-                    angular.copy(theData, KeplerAPI.data);
+                    //var theData = angular.fromJson(result);
+                    angular.copy(result, KeplerAPI.data);
+                    console.log(typeof(KeplerAPI.data));
                     // it seems like there should be a better way, like self.data for the above invocation
                 })
                 .error(function(){

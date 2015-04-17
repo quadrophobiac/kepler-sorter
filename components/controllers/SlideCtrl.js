@@ -15,10 +15,15 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
 
     $scope.koi = KeplerAPI.data;
     $scope.radiusList = KeplerAPI.radiiData;
+    $scope.limit = 100;
 
-    $scope.matches = function(lt, gt){
-        KeplerAPI.captainsLog(lt, gt);
-        KeplerAPI.get(lt, gt);
+    $scope.setFetchAmount = function(limit){
+        $scope.limit = limit;
+    }
+
+    $scope.matches = function(lt, gt, limit){
+        KeplerAPI.captainsLog(lt, gt, limit);
+        KeplerAPI.get(lt, gt, limit);
         // get expects args in order lt, gt
     };
 
@@ -40,21 +45,24 @@ app.controller('SlideCtrl', function($scope, KeplerAPI){
         smooth: true,
         css: {
             background: {"background-color": "silver"},
-            range: {"background-color": "blue"},
+            range: {"background-color": "#73161b"},
             pointer: {"background-color": "red"}   // circle pointer
         },
         realtime: true,
         callback: function(value) {
-            // useful when combined with 'realtime' option
-            // released it triggered when mouse up
-            var startPlanet = value.substring(0,1);
-            var endPlanet = value.substring(2,3);
-            console.log( startPlanet+ " "+endPlanet+" ");
-            $scope.comparison($scope.planets[(startPlanet-1)], $scope.planets[(endPlanet-1)]);
-            console.log("fetch KOIs less than "+$scope.ceiling+" and greater than "+$scope.floor);
-            $scope.matches($scope.ceiling, $scope.floor);
-
+            $scope.retrieveAndSend(value);
         }
+    };
+
+    $scope.retrieveAndSend = function(value){
+        //console.log(value);
+        var startPlanet = value.substring(0,1);
+        var endPlanet = value.substring(2,3);
+        //console.log( startPlanet+ " "+endPlanet+" ");
+        $scope.comparison($scope.planets[(startPlanet-1)], $scope.planets[(endPlanet-1)]);
+        console.log("fetch KOIs less than "+$scope.ceiling+" and greater than "+$scope.floor);
+        $scope.matches($scope.ceiling, $scope.floor, $scope.limit);
+        console.log(typeof($scope.koi))
     };
 
     $scope.comparison = function(astral1, astral2){

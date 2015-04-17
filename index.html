@@ -6,28 +6,50 @@
 	<title>AngularUI - Slider demo</title>
 	<!--<base href=".."></base>-->
 	<link rel="stylesheet" type="text/css" href="bower_components/ng-slider/dist/css/ng-slider.min.css">
-	<link rel="stylesheet" href="demo/css/app.css">
+	<link rel="stylesheet" href="css/app.css">
 </head>
 <body ng-controller="SlideCtrl">
 
 	<h1>Kepler Comparison</h1>
-
+	Records Retrieved: {{limit}}
 	<div id="displayBox" style="">
 		<table>
-			<tr ng-repeat="object in koi" style="font:13px Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #73161b;">
-				<!--<td>Index:  {{$index+1}}</td>-->
-				<td>Kepler ID: {{object.KOI}}</td>
-				<td>Rotation Period: {{object.PER}}</td>
+			<thead>
+			<tr class="header">
+				<th>
+					Index
+				</th>
+				<th>
+					Kepler ID
+				</th>
+				<th>
+					Rotation Period
+				</th>
+				<th>
+					Planetary Radius(Earth Radii)
+				</th>
+			</tr>
+			</thead>
+			<tr ng-repeat="object in koi | orderBy:'PER'">
+				<!--<td>{{$index+1}}</td>-->
+				<!--<td>Kepler ID: {{object.KOI}}</td>-->
+				<!--<td>Rotation Period: {{object.PER}}</td>-->
+				<td>{{$index+1}}</td>
+				<td>{{object.KOI}}</td>
+				<td>{{object.PER}}</td>
+				<td>{{object.RPLANET}}</td>
 			</tr>
 		</table>
 	</div>
 	<br>
+
 	<div>
 		<input ng-model="value" type="text" id="mySlider1" slider options="options" /><br><br>
 		<!--above is the slider, which has some non functional API calls bound to it-->
 		<form>
-			Return number of KOI: <input type="number" min="10" max="200" step="10" placeholder="10" value="10" ng-model="theLimit">
+			Return <input type="number" min="10" max="200" step="10" placeholder="10" value="10" ng-model="theLimit"> KOI from search
 		</form>
+		<button class="button" ng-click="setFetchAmount(theLimit)">Change Number of KOI</button>
 
 
 		<!--<form>-->
